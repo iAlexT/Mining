@@ -1,3 +1,5 @@
 database:
   uri: "mongodb://localhost"
   name: "mining"
+mining:
+  percentage: 30
