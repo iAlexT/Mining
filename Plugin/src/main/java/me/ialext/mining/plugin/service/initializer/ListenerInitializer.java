@@ -2,6 +2,7 @@ package me.ialext.mining.plugin.service.initializer;
 
 import me.ialext.mining.api.service.Service;
 import me.ialext.mining.plugin.listeners.BlockBreakListener;
+import me.ialext.mining.plugin.listeners.BlockPlaceListener;
 import me.ialext.mining.plugin.listeners.PlayerJoinListener;
 import me.ialext.mining.plugin.listeners.PlayerQuitListener;
 import me.ialext.mining.plugin.util.message.LoggingMessenger;
@@ -17,6 +18,7 @@ public class ListenerInitializer implements Service {
   @Inject private PlayerJoinListener playerJoinListener;
   @Inject private PlayerQuitListener playerQuitListener;
   @Inject private BlockBreakListener blockBreakListener;
+  @Inject private BlockPlaceListener blockPlaceListener;
 
   @Override
   public void initialize() {
@@ -24,7 +26,8 @@ public class ListenerInitializer implements Service {
     registerListeners(
         playerJoinListener,
         playerQuitListener,
-        blockBreakListener
+        blockBreakListener,
+        blockPlaceListener
     );
   }
 

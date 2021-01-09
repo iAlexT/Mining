@@ -21,6 +21,7 @@ public class BlockBreakListener implements Listener {
   @Inject private JavaPlugin plugin;
   @Inject private EconomyOperations economyOperations;
 
+  // TODO: 9/1/21 Cleanup code.
   @EventHandler
   public void onBlockBreak(BlockBreakEvent event) {
     Player player = event.getPlayer();
