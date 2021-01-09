@@ -1,0 +1,4 @@
+name: API
+version: ${project.version}
+main: me.ialext.mining.api.API
+api-version: 1.16
