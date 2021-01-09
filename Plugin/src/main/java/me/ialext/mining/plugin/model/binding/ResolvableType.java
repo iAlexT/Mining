@@ -8,7 +8,7 @@ import me.yushust.inject.key.TypeReference;
 import java.lang.reflect.TypeVariable;
 
 /**
- * Extends {@link TypeReference} with some methods used to resolve generic types.
+ * A kind of {@link TypeReference} with some extra methods to resolve generic types.
  */
 @SuppressWarnings("All")
 public abstract class ResolvableType<T> extends TypeReference<T> {

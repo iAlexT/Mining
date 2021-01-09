@@ -33,7 +33,7 @@ public final class Types {
   }
 
   /**
-   * Convert a Guava {@link TypeToken} to a Trew {@link TypeReference}.
+   * Converts a Guava {@link TypeToken} to a Trew {@link TypeReference}.
    */
   public static <T> TypeReference<T> toLiteral(TypeToken<T> typeToken) {
     return TypeReference.of(typeToken.getType());

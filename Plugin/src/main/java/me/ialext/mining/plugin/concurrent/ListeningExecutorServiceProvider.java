@@ -8,8 +8,7 @@ import javax.inject.Singleton;
 import java.util.concurrent.Executors;
 
 @Singleton
-public class
-ListeningExecutorServiceProvider implements Provider<ListeningExecutorService> {
+public class ListeningExecutorServiceProvider implements Provider<ListeningExecutorService> {
 
   @Override
   public ListeningExecutorService get() {

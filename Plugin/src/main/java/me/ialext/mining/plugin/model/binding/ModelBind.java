@@ -23,6 +23,11 @@ public class ModelBind<O extends Model> {
     return new ModelBind<>(binder, modelReference);
   }
 
+  /**
+   * This class auto-binds {@link Model}s.
+   * @see "{@link ModelMeta}."
+   * @see "{@link me.ialext.mining.plugin.model.binding}."
+   */
   private class PerModelModule extends AbstractModule {
 
     @Override

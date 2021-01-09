@@ -94,6 +94,7 @@ public class MongoObjectRepository<O extends Model> implements ObjectRepository<
         SimpleStampedModel model = (SimpleStampedModel) o;
         model.setLastUpdate(new Date());
       }
+      datastore.delete(o);
       datastore.save(o);
 
       return null;
