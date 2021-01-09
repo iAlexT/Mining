@@ -2,7 +2,7 @@ package me.ialext.mining.api.user;
 
 import me.ialext.mining.api.model.Model;
 import me.ialext.mining.api.model.annotation.MaterializeClass;
-import me.ialext.mining.api.statistic.FloatStatistic;
+import me.ialext.mining.api.statistic.DoubleStatistic;
 import me.ialext.mining.api.statistic.IntegerStatistic;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -35,7 +35,7 @@ public interface User extends Model.Stamped {
    *
    * @return THe won money statistic.
    */
-  FloatStatistic getWonMoney();
+  DoubleStatistic getWonMoney();
 
   /**
    * Provides the {@link User}'s Bukkit {@link Player}.

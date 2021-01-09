@@ -3,7 +3,7 @@ package me.ialext.mining.plugin.listeners;
 import me.ialext.mining.api.cache.Cache;
 import me.ialext.mining.api.data.Filter;
 import me.ialext.mining.api.data.ObjectRepository;
-import me.ialext.mining.api.statistic.FloatStatistic;
+import me.ialext.mining.api.statistic.DoubleStatistic;
 import me.ialext.mining.api.statistic.IntegerStatistic;
 import me.ialext.mining.api.user.User;
 import me.ialext.mining.api.user.SimpleUser;
@@ -29,7 +29,7 @@ public class PlayerJoinListener implements Listener {
 
     User user;
     if (!optionalUser.isPresent()) {
-      user = new SimpleUser();
+      user = new SimpleUser(player.getUniqueId(), new IntegerStatistic(), new DoubleStatistic());
       userObjectRepository.save(user);
     } else {
       user = optionalUser.get();

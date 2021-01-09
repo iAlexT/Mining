@@ -30,17 +30,18 @@ public class BlockBreakListener implements Listener {
   @EventHandler
   public void onBlockBreak(BlockBreakEvent event) {
     Player player = event.getPlayer();
-    double random = PercentageGenerator.newPercentage(100);
+    int random = PercentageGenerator.newIntegerPercentage(100);
     userCache.find(player.getUniqueId()).ifPresent(user -> {
       user.getMinedBlocks().increment(1);
-      double probability = config.getDouble("mining.percentage");
+      double probability = config.getInt("mining.percentage");
       double money = config.getDouble("mining.money");
-      if (probability <= 50 && probability > 0) {
-        if (random <= probability) {
+
+      if (probability > 50) {
+        if (random > probability) {
           Bukkit.getPluginManager().callEvent(new UserGainMoneyEvent(user, money));
         }
-      } else if (probability >= 50 && probability <= 100) {
-        if (random >= probability) {
+      } else if (probability < 50) {
+        if (random < probability) {
           Bukkit.getPluginManager().callEvent(new UserGainMoneyEvent(user, money));
         }
       }

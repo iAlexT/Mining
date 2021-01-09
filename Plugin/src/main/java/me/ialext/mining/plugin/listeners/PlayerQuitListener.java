@@ -21,7 +21,7 @@ public class PlayerQuitListener implements Listener {
   public void onPlayerQuit(PlayerQuitEvent event) {
     Player player = event.getPlayer();
     userCache.find(player.getUniqueId()).ifPresent(user -> {
-      userObjectRepository.save(user);
+      userObjectRepository.update(user);
       userCache.remove(player.getUniqueId());
     });
   }

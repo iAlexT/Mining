@@ -10,7 +10,11 @@ public interface PercentageGenerator {
    * @param range The bound of this percentage.
    * @return A random decimal number.
    */
-  static double newPercentage(int range) {
+  static double newDoublePercentage(int range) {
     return ThreadLocalRandom.current().nextDouble(range);
+  }
+
+  static int newIntegerPercentage(int range) {
+    return ThreadLocalRandom.current().nextInt(range);
   }
 }

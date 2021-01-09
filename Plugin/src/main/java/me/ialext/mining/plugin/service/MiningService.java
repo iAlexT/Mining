@@ -9,10 +9,6 @@ import javax.inject.Named;
 public class MiningService implements Service {
 
   @Inject
-  @Named("command-initializer")
-  private Service commandInitializer;
-
-  @Inject
   @Named("listener-initializer")
   private Service listenerInitializer;
 
@@ -23,7 +19,6 @@ public class MiningService implements Service {
   @Override
   public void initialize() {
     LoggingMessenger.info("Starting Mining service...");
-    commandInitializer.initialize();
     listenerInitializer.initialize();
     vaultInitializer.initialize();
   }

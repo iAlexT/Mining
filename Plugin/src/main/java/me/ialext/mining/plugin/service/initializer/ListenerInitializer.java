@@ -5,6 +5,7 @@ import me.ialext.mining.plugin.listeners.BlockBreakListener;
 import me.ialext.mining.plugin.listeners.BlockPlaceListener;
 import me.ialext.mining.plugin.listeners.PlayerJoinListener;
 import me.ialext.mining.plugin.listeners.PlayerQuitListener;
+import me.ialext.mining.plugin.listeners.user.UserGainMoneyListener;
 import me.ialext.mining.plugin.util.message.LoggingMessenger;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,6 +20,7 @@ public class ListenerInitializer implements Service {
   @Inject private PlayerQuitListener playerQuitListener;
   @Inject private BlockBreakListener blockBreakListener;
   @Inject private BlockPlaceListener blockPlaceListener;
+  @Inject private UserGainMoneyListener userGainMoneyListener;
 
   @Override
   public void initialize() {
@@ -27,7 +29,8 @@ public class ListenerInitializer implements Service {
         playerJoinListener,
         playerQuitListener,
         blockBreakListener,
-        blockPlaceListener
+        blockPlaceListener,
+        userGainMoneyListener
     );
   }
 
