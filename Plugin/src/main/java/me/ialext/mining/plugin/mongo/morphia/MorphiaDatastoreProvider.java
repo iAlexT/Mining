@@ -3,9 +3,10 @@ package me.ialext.mining.plugin.mongo.morphia;
 import com.mongodb.MongoClient;
 import dev.morphia.Datastore;
 import dev.morphia.Morphia;
-import org.bukkit.plugin.java.JavaPlugin;
+import me.ialext.mining.plugin.file.YamlFileCreator;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Provider;
 import javax.inject.Singleton;
 
@@ -15,12 +16,14 @@ public class MorphiaDatastoreProvider implements Provider<Datastore> {
   @Inject
   private Morphia morphia;
   @Inject
-  private JavaPlugin plugin;
+  @Named("config")
+  private YamlFileCreator config;
+
   @Inject
   private MongoClient mongoClient;
 
   @Override
   public Datastore get() {
-    return morphia.createDatastore(mongoClient, plugin.getConfig().getString("database.name", "MiningPlugin-Datastore"));
+    return morphia.createDatastore(mongoClient, config.getString("database.name", "MiningPlugin-Datastore"));
   }
 }
