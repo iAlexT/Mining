@@ -3,9 +3,11 @@ package me.ialext.mining.plugin.listeners;
 import me.ialext.mining.api.cache.Cache;
 import me.ialext.mining.api.data.ObjectRepository;
 import me.ialext.mining.api.economy.EconomyOperations;
+import me.ialext.mining.api.event.UserGainMoneyEvent;
 import me.ialext.mining.api.user.User;
 import me.ialext.mining.plugin.file.YamlFileCreator;
 import me.ialext.mining.plugin.util.PercentageGenerator;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,15 +37,11 @@ public class BlockBreakListener implements Listener {
       double money = config.getDouble("mining.money");
       if (probability <= 50 && probability > 0) {
         if (random <= probability) {
-          economyOperations.deposit(player, money);
-          player.sendMessage("Deposited " + money + " by reached a percentage lower than 50");
-          user.getWonMoney().increment((float) money);
+          Bukkit.getPluginManager().callEvent(new UserGainMoneyEvent(user, money));
         }
       } else if (probability >= 50 && probability <= 100) {
         if (random >= probability) {
-          economyOperations.deposit(player, money);
-          player.sendMessage("Deposited " + money + " by reached a percentage bigger than 50");
-          user.getWonMoney().increment((float) money);
+          Bukkit.getPluginManager().callEvent(new UserGainMoneyEvent(user, money));
         }
       }
       userObjectRepository.update(user);
