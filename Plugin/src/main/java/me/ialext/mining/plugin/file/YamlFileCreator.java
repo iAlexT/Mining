@@ -3,7 +3,7 @@ package me.ialext.mining.plugin.file;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,25 +12,25 @@ import java.util.List;
 public class YamlFileCreator extends YamlConfiguration {
 
   private final String fileName;
-  private final Plugin plugin;
+  private final JavaPlugin plugin;
   private final File file;
 
-  public YamlFileCreator(Plugin plugin, String fileName, String fileExtension, File folder){
+  public YamlFileCreator(JavaPlugin plugin, String fileName, String fileExtension, File folder){
     this.plugin = plugin;
     this.fileName = fileName + (fileName.endsWith(fileExtension) ? "" : fileExtension);
     this.file = new File(folder, this.fileName);
     this.createFile();
   }
 
-  public YamlFileCreator(Plugin plugin, String fileName) {
+  public YamlFileCreator(JavaPlugin plugin, String fileName) {
     this(plugin, fileName, ".yml");
   }
 
-  public YamlFileCreator(Plugin plugin, String fileName, String fileExtension) {
+  public YamlFileCreator(JavaPlugin plugin, String fileName, String fileExtension) {
     this(plugin, fileName, fileExtension, plugin.getDataFolder());
   }
 
-  public YamlFileCreator(Plugin plugin, String fileName, String fileExtension, String filePath) {
+  public YamlFileCreator(JavaPlugin plugin, String fileName, String fileExtension, String filePath) {
     this(plugin, fileName, fileExtension, new File(plugin.getDataFolder().getAbsolutePath() + "/" + filePath));
   }
 
