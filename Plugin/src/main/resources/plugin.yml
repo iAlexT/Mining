@@ -1,0 +1,4 @@
+name: Mining
+version: ${project.version}
+main: me.ialext.mining.plugin.MiningPlugin
+api-version: 1.8
