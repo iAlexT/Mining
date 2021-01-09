@@ -6,8 +6,7 @@ import org.bson.types.ObjectId;
 
 public class SimpleModel implements Model {
 
-  @Id
-  private final ObjectId id;
+  @Id private final ObjectId id;
 
   public SimpleModel(ObjectId id) {
     this.id = id;
