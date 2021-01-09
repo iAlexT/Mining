@@ -1,11 +1,12 @@
 package me.ialext.mining.plugin.listeners;
 
 import me.ialext.mining.api.cache.Cache;
+import me.ialext.mining.api.data.Filter;
 import me.ialext.mining.api.data.ObjectRepository;
 import me.ialext.mining.api.statistic.FloatStatistic;
 import me.ialext.mining.api.statistic.IntegerStatistic;
 import me.ialext.mining.api.user.User;
-import me.ialext.mining.plugin.user.SimpleUser;
+import me.ialext.mining.api.user.SimpleUser;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,11 +25,11 @@ public class PlayerJoinListener implements Listener {
   @EventHandler
   public void onPlayerJoin(PlayerJoinEvent event) throws ExecutionException, InterruptedException {
     Player player = event.getPlayer();
-    Optional<User> optionalUser = userObjectRepository.findOne(player.getUniqueId().toString()).get();
+    Optional<User> optionalUser = userObjectRepository.findOneByQuery(Filter.create().set("uuid", player.getUniqueId().toString())).get().stream().findAny();
 
     User user;
     if (!optionalUser.isPresent()) {
-      user = new SimpleUser(player.getUniqueId(), new IntegerStatistic(), new FloatStatistic());
+      user = new SimpleUser();
       userObjectRepository.save(user);
     } else {
       user = optionalUser.get();

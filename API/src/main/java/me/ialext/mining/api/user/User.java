@@ -1,6 +1,7 @@
 package me.ialext.mining.api.user;
 
 import me.ialext.mining.api.model.Model;
+import me.ialext.mining.api.model.annotation.MaterializeClass;
 import me.ialext.mining.api.statistic.FloatStatistic;
 import me.ialext.mining.api.statistic.IntegerStatistic;
 import org.bukkit.Bukkit;
@@ -8,10 +9,12 @@ import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
+
 /**
  * Represents a custom {@link Player} which contains some extra methods.
  */
-public interface User extends Model {
+@MaterializeClass(SimpleUser.class)
+public interface User extends Model.Stamped {
 
   /**
    * Provides the {@link User}'s {@link UUID}.

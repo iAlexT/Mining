@@ -4,19 +4,20 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Sorts;
 import dev.morphia.Datastore;
+import dev.morphia.query.Query;
+import dev.morphia.query.Sort;
+import me.ialext.mining.api.data.Filter;
 import me.ialext.mining.api.data.ObjectRepository;
 import me.ialext.mining.api.model.Model;
-import me.ialext.mining.plugin.model.SimpleStampedModel;
+import me.ialext.mining.api.model.SimpleStampedModel;
 import me.ialext.mining.plugin.model.binding.ModelMeta;
 import org.bson.types.ObjectId;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class MongoObjectRepository<O extends Model> implements ObjectRepository<O> {
 
@@ -41,6 +42,13 @@ public class MongoObjectRepository<O extends Model> implements ObjectRepository<
       return Optional.ofNullable(document);
     });
 
+  }
+
+  @Override
+  public ListenableFuture<List<O>> findOneByQuery(Filter query) {
+    return executorService.submit(() -> {
+      return toQuery(query).find().toList();
+    });
   }
 
   @Override
@@ -116,4 +124,21 @@ public class MongoObjectRepository<O extends Model> implements ObjectRepository<
     });
   }
 
+  private Query<O> toQuery(Filter filter) {
+    Query<O> query = datastore.find(modelMeta.getSerializable());
+
+    for (Map.Entry<String, Object> entry : filter.getQuery().entrySet()) {
+      query = query
+          .field(entry.getKey())
+          .equal(entry.getValue());
+    }
+
+    Optional<String> sortBy = filter.getSortBy();
+
+    if (sortBy.isPresent()) {
+      query = query.order(Sort.ascending(sortBy.get()));
+    }
+
+    return query;
+  }
 }

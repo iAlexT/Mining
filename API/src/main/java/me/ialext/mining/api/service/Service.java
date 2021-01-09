@@ -15,5 +15,5 @@ public interface Service {
   /**
    * Interrupts the {@link Service}, unloading everything related to it.
    */
-  void interrupt();
+  default void interrupt() {}
 }

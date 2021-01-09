@@ -23,6 +23,13 @@ public interface ObjectRepository<O extends Model> {
   ListenableFuture<Optional<O>> findOne(String id);
 
   /**
+   * Searches for an {@link O} in the {@link ObjectRepository} using the given {@link Filter} query.
+   * @param query The search query.
+   * @return An {@link Optional} value of {@link O}, taken from the {@link ObjectRepository}.
+   */
+  ListenableFuture<List<O>> findOneByQuery(Filter query);
+
+  /**
    * Searches for a list of {@link O}s in the {@link ObjectRepository} that shares the {@link org.bson.types.ObjectId}.
    * @param ids The {@link org.bson.types.ObjectId}'s {@link String}.
    * @return A {@link List} of {@link Optional} values of {@link O}, taken from the {@link ObjectRepository}.

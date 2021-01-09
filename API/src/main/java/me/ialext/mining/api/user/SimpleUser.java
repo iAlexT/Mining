@@ -1,29 +1,38 @@
-package me.ialext.mining.plugin.user;
+package me.ialext.mining.api.user;
 
+import dev.morphia.annotations.Entity;
 import lombok.Getter;
+import me.ialext.mining.api.model.SimpleStampedModel;
 import me.ialext.mining.api.statistic.FloatStatistic;
 import me.ialext.mining.api.statistic.IntegerStatistic;
-import me.ialext.mining.api.user.User;
 import org.bson.types.ObjectId;
 
 import java.util.UUID;
 
-public class SimpleUser implements User {
+@Entity(value = "users", noClassnameStored = true)
+public class SimpleUser extends SimpleStampedModel implements User {
 
-  @Getter
-  private final ObjectId objectId;
-  @Getter
-  private final UUID uuid;
-  @Getter
-  private final IntegerStatistic minedBlocks;
-  @Getter
-  private final FloatStatistic wonMoney;
+  private final String uuid;
+  @Getter private final IntegerStatistic minedBlocks;
+  @Getter private final FloatStatistic wonMoney;
 
   public SimpleUser(UUID uuid, IntegerStatistic minedBlocks, FloatStatistic wonMoney) {
-    this.uuid = uuid;
+    super(new ObjectId());
+    this.uuid = uuid.toString();
     this.minedBlocks = minedBlocks;
     this.wonMoney = wonMoney;
-    this.objectId = new ObjectId(uuid.toString());
   }
 
+  // Constructor required for Morphia mapping.
+  public SimpleUser() {
+    super(new ObjectId());
+    this.uuid = "";
+    this.minedBlocks = new IntegerStatistic();
+    this.wonMoney = new FloatStatistic();
+  }
+
+  @Override
+  public UUID getUuid() {
+    return UUID.fromString(uuid);
+  }
 }

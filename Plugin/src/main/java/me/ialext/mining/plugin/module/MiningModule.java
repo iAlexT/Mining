@@ -14,8 +14,12 @@ public class MiningModule extends AbstractModule {
   @Override
   protected void configure() {
     install(
-        new DataModule(),
-        new BukkitModule(plugin)
+        new MongoModule(),
+        new BukkitModule(plugin),
+        new ServiceModule(),
+        new EconomyModule(),
+        new CacheModule(),
+        new ModelModule()
     );
   }
 }

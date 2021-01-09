@@ -1,4 +1,4 @@
-package me.ialext.mining.plugin.model;
+package me.ialext.mining.api.model;
 
 import lombok.Getter;
 import lombok.Setter;

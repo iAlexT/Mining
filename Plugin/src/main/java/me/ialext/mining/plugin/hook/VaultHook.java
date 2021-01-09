@@ -14,11 +14,8 @@ import static me.ialext.mining.plugin.util.message.LoggingMessenger.severe;
 @Singleton
 public class VaultHook {
 
-  @Inject
-  private JavaPlugin plugin;
-
-  @Getter
-  private Economy economy;
+  @Inject private JavaPlugin plugin;
+  @Getter private Economy economy;
 
   public void hook() {
     if (!Bukkit.getPluginManager().isPluginEnabled("Vault")) {

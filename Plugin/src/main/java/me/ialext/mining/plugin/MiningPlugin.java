@@ -1,7 +1,7 @@
 package me.ialext.mining.plugin;
 
 import me.ialext.mining.api.service.Service;
-import me.ialext.mining.plugin.module.BukkitModule;
+import me.ialext.mining.plugin.module.MiningModule;
 import me.yushust.inject.Injector;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,7 +16,7 @@ public final class MiningPlugin extends JavaPlugin {
 
   @Override
   public void onEnable() {
-    Injector injector = Injector.create(new BukkitModule(this));
+    Injector injector = Injector.create(new MiningModule(this));
     injector.injectMembers(this);
 
     miningService.initialize();

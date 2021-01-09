@@ -1,4 +1,4 @@
-package me.ialext.mining.plugin.model;
+package me.ialext.mining.api.model;
 
 import dev.morphia.annotations.Id;
 import me.ialext.mining.api.model.Model;
