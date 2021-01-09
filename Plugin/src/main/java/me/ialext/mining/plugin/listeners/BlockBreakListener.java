@@ -32,17 +32,18 @@ public class BlockBreakListener implements Listener {
     userCache.find(player.getUniqueId()).ifPresent(user -> {
       user.getMinedBlocks().increment(1);
       double probability = config.getDouble("mining.percentage");
+      double money = config.getDouble("mining.money");
       if (probability <= 50 && probability > 0) {
         if (random <= probability) {
-          economyOperations.deposit(player, 500);
-          player.sendMessage("Deposited 500 by reached a percentage lower than 50");
-          user.getWonMoney().increment(500);
+          economyOperations.deposit(player, money);
+          player.sendMessage("Deposited " + money + " by reached a percentage lower than 50");
+          user.getWonMoney().increment((float) money);
         }
       } else if (probability >= 50 && probability <= 100) {
         if (random >= probability) {
-          economyOperations.deposit(player, 500);
-          player.sendMessage("Deposited 500 by reached a percentage bigger than 50");
-          user.getWonMoney().increment(500);
+          economyOperations.deposit(player, money);
+          player.sendMessage("Deposited " + money + " by reached a percentage bigger than 50");
+          user.getWonMoney().increment((float) money);
         }
       }
       userObjectRepository.update(user);

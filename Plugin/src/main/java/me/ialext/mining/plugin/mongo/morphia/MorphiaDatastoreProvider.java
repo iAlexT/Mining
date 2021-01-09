@@ -24,6 +24,6 @@ public class MorphiaDatastoreProvider implements Provider<Datastore> {
 
   @Override
   public Datastore get() {
-    return morphia.createDatastore(mongoClient, config.getString("database.name", "MiningPlugin-Datastore"));
+    return morphia.createDatastore(mongoClient, config.getString("database.name"));
   }
 }

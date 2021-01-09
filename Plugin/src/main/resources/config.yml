@@ -3,3 +3,4 @@ database:
   name: "mining"
 mining:
   percentage: 30
+  money: 300
