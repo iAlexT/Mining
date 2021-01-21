@@ -27,13 +27,7 @@ public class PlayerJoinListener implements Listener {
     Player player = event.getPlayer();
     Optional<User> optionalUser = userObjectRepository.findOneByQuery(Filter.create().set("uuid", player.getUniqueId().toString())).get().stream().findAny();
 
-    User user;
-    if (!optionalUser.isPresent()) {
-      user = new SimpleUser(player.getUniqueId(), new IntegerStatistic(), new DoubleStatistic());
-      userObjectRepository.save(user);
-    } else {
-      user = optionalUser.get();
-    }
+    User user = optionalUser.orElseGet(() -> new SimpleUser(player.getUniqueId(), new IntegerStatistic(), new DoubleStatistic()));
     userCache.add(player.getUniqueId(), user);
   }
 }

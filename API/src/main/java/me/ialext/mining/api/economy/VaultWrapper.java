@@ -2,7 +2,7 @@ package me.ialext.mining.api.economy;
 
 import org.bukkit.entity.Player;
 
-public interface EconomyOperations {
+public interface VaultWrapper {
 
   void deposit(Player player, double amount);
 

@@ -1,6 +1,6 @@
 package me.ialext.mining.plugin.economy;
 
-import me.ialext.mining.api.economy.EconomyOperations;
+import me.ialext.mining.api.economy.VaultWrapper;
 import me.ialext.mining.plugin.hook.VaultHook;
 import org.bukkit.entity.Player;
 
@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-public class DefaultEconomyOperations implements EconomyOperations {
+public class DefaultVaultWrapper implements VaultWrapper {
 
   @Inject
   private VaultHook vaultHook;

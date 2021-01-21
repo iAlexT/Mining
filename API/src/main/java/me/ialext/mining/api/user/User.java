@@ -1,7 +1,7 @@
 package me.ialext.mining.api.user;
 
-import me.ialext.mining.api.model.Model;
-import me.ialext.mining.api.model.annotation.MaterializeClass;
+import me.ialext.mining.api.data.model.Model;
+import me.ialext.mining.api.data.model.annotation.ModelImplementation;
 import me.ialext.mining.api.statistic.DoubleStatistic;
 import me.ialext.mining.api.statistic.IntegerStatistic;
 import org.bukkit.Bukkit;
@@ -13,15 +13,15 @@ import java.util.UUID;
 /**
  * Represents a custom {@link Player} which contains some extra methods.
  */
-@MaterializeClass(SimpleUser.class)
-public interface User extends Model.Stamped {
+@ModelImplementation(SimpleUser.class)
+public interface User extends Model {
 
   /**
    * Provides the {@link User}'s {@link UUID}.
    *
    * @return The UUID.
    */
-  UUID getUuid();
+  UUID getId();
 
   /**
    * Provides the {@link User}'s mined blocks {@link me.ialext.mining.api.statistic.Statistic}.
@@ -43,7 +43,7 @@ public interface User extends Model.Stamped {
    * @return The Bukkit Player.
    */
   default Player getPlayer() {
-    return Bukkit.getPlayer(getUuid());
+    return Bukkit.getPlayer(getId());
   }
 
 }

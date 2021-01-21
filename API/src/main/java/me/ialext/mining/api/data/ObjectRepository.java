@@ -1,7 +1,7 @@
 package me.ialext.mining.api.data;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import me.ialext.mining.api.model.Model;
+import me.ialext.mining.api.data.model.Model;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,12 +34,12 @@ public interface ObjectRepository<O extends Model> {
    * @param ids The {@link org.bson.types.ObjectId}'s {@link String}.
    * @return A {@link List} of {@link Optional} values of {@link O}, taken from the {@link ObjectRepository}.
    */
-  ListenableFuture<List<Optional<O>>> find(List<String> ids);
+  ListenableFuture<List<O>> find(List<String> ids);
 
   /**
    * @see #find(List)
    */
-  default ListenableFuture<List<Optional<O>>> find(String... ids) {
+  default ListenableFuture<List<O>> find(String... ids) {
     return find(Arrays.asList(ids));
   }
 

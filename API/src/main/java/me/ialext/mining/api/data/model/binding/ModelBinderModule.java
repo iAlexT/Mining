@@ -1,6 +1,6 @@
-package me.ialext.mining.plugin.model.binding;
+package me.ialext.mining.api.data.model.binding;
 
-import me.ialext.mining.api.model.Model;
+import me.ialext.mining.api.data.model.Model;
 import me.yushust.inject.Binder;
 import me.yushust.inject.key.TypeReference;
 

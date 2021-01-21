@@ -1,4 +1,4 @@
-package me.ialext.mining.plugin.model.binding;
+package me.ialext.mining.api.data.model.binding;
 
 import com.google.common.reflect.TypeParameter;
 import com.google.common.reflect.TypeToken;
